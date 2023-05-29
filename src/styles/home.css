@@ -1,0 +1,50 @@
+h1 {
+  margin-top: 20px;
+}
+.formContainer {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.formContainer input {
+  padding: 5px;
+}
+
+.formContainer input[type="text"] {
+  width: 90%;
+}
+
+.userImage {
+  width: 200px;
+  border-radius: 50%;
+  border: 3px solid grey;
+}
+
+.profile {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.externalLink {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.externalLink img {
+  width: 20px;
+}
