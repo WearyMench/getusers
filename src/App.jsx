@@ -11,7 +11,7 @@ import Loader from "./components/Loader";
 import "./styles/App.css";
 
 function App() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
   const url = import.meta.env.VITE_BACKEND_URL;
   const key = import.meta.env.VITE_BACKEND_KEY;
 
