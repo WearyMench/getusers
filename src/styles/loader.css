@@ -2,8 +2,8 @@
 
 .lds-spinner {
   color: official;
-  display: inline-block;
-  position: relative;
+  display: flex;
+  margin: 40px auto;
   width: 80px;
   height: 80px;
 }
@@ -22,7 +22,7 @@
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #000000;
+  background: black;
 }
 
 .lds-spinner div:nth-child(1) {

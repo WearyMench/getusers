@@ -1,0 +1,25 @@
+.notFoundDiv {
+  width: 60%;
+  height: 100px;
+  border: 5px dashed red;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: brown;
+}
+
+.notFoundDiv a {
+  text-decoration: none;
+  color: brown;
+  background-color: antiquewhite;
+  border: 3px solid burlywood;
+  box-shadow: 0px 0px 3px burlywood inset;
+  height: 20px;
+  width: 100px;
+}
+
+.notFoundDiv a:hover {
+  box-shadow: 0px 0px 7px burlywood inset;
+}

@@ -1,68 +1,56 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getData } from "../Api";
+import { GenerateUsernames } from "../GenerateUsername";
+
+import Searcher from "../components/Searcher";
+import Loader from "../components/Loader";
+import UserCard from "../components/UserCard";
 
 import "../styles/home.css";
 
-function Home({ userData, loadInfo }) {
-  const [user, setUser] = useState("");
+function Home() {
+  const [userData, setUserData] = useState(null);
+  const [randomData, setRandomData] = useState(null);
+  useEffect(() => {
+    loadInfo();
+    randomInfo();
+  }, []);
 
-  const handleChange = (e) => {
-    setUser(e.target.value);
+  const loadInfo = async (user) => {
+    const data = await getData(user);
+    setUserData(data);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!user || user === "") {
-      return;
-    }
-    loadInfo(user);
+  const randomInfo = async () => {
+    const usernames = GenerateUsernames();
+    const dataPromises = usernames.map(async (username) => {
+      return await getData(username);
+    });
+    const data = await Promise.all(dataPromises);
+    setRandomData(data);
   };
+  console.log(randomData);
   return (
     <div>
       <h1>Enter any GitHub username</h1>
-      <form onSubmit={handleSubmit} className="formContainer">
-        <input
-          type="text"
-          name="username"
-          id="username"
-          onChange={handleChange}
-          placeholder="Any username"
-        />
-        <input type="submit" value="Search" />
-      </form>
+      <Searcher loadInfo={loadInfo} />
       <hr />
-      <div className="profile">
-        <div className="mainInfo">
-          <img
-            src={userData.avatar_url}
-            alt={userData.login}
-            className="userImage"
-          />
-          <div>
-            <p>{userData.name}</p>
-            <p>{userData.login}</p>
-          </div>
-        </div>
-        <h3>{userData.bio}</h3>
-        <p>
-          Followers: {userData.followers} & Following: {userData.following}{" "}
-        </p>
-        <p>Public Respositories: {userData.public_repos}</p>
-        <a href={userData.html_url} className="externalLink">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/25/25284.png"
-            alt="external link"
-          />
-          <p>Go to GitHub</p>
-        </a>
+      {userData ? <UserCard userData={userData} /> : <Loader />}
+      <hr />
+      <h1>Some Examples</h1>
+      <div className="examples">
+        {randomData ? (
+          randomData.map((data, index) => (
+            <React.Fragment key={index}>
+              {data ? <UserCard userData={data} /> : <Loader />}
+            </React.Fragment>
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );
 }
-
-Home.propTypes = {
-  userData: PropTypes.object.isRequired,
-  loadInfo: PropTypes.func.isRequired,
-};
 
 export default Home;
