@@ -162,7 +162,7 @@ function generarNumeroAleatorio(min, max) {
 export function GenerateUsernames() {
   const nombresAleatorios = [];
 
-  while (nombresAleatorios.length < 10) {
+  while (nombresAleatorios.length < 12) {
     const indiceAleatorio = generarNumeroAleatorio(0, nombres.length - 1);
     const nombreAleatorio = nombres[indiceAleatorio];
 

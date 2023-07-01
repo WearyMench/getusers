@@ -15,7 +15,12 @@ function UserCard({ userData }) {
           Followers: {userData.followers} & Following: {userData.following}{" "}
         </p>
         <p>Public Respositories: {userData.public_repos}</p>
-        <a href={userData.html_url} className="externalLink">
+        <a
+          href={userData.html_url}
+          target="_blank"
+          rel="noreferrer"
+          className="externalLink"
+        >
           <img
             src="https://cdn-icons-png.flaticon.com/512/25/25284.png"
             alt="external link"
