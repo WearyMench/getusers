@@ -32,7 +32,7 @@ function Home() {
   console.log(randomData);
   return (
     <div>
-      <h1>Enter any GitHub username</h1>
+      <h1>Enter Any GitHub Username</h1>
       <Searcher loadInfo={loadInfo} />
       <hr />
       {userData ? <UserCard userData={userData} /> : <Loader />}
